@@ -15,14 +15,16 @@ _C.DATASET.SUBSET_LIST = "image_list.txt"
 
 # Semantic segmentation: class configuration
 _C.SEGMENTATION = CN()
-_C.SEGMENTATION.IDS = [0,1,2]
-_C.SEGMENTATION.IGNORE_ID = 255
-_C.SEGMENTATION.NAMES = ['obstacle', 'water', 'sky']
-_C.SEGMENTATION.OBSTACLE_CLASS = 0
-_C.SEGMENTATION.WATER_CLASS = 1
-_C.SEGMENTATION.SKY_CLASS = 2
-_C.SEGMENTATION.COLORS = [[247, 195,  37],  # Obstacles RGB color
-                          [ 41, 167, 224],  # Water RGB color
+_C.SEGMENTATION.IDS = [0, 1, 2, 3]
+_C.SEGMENTATION.IGNORE_ID = 0
+_C.SEGMENTATION.NAMES = ['static_obstacle', 'dynamic_obstacle', 'water', 'sky']
+_C.SEGMENTATION.STATIC_OBSTACLE_CLASS = 0
+_C.SEGMENTATION.DYNAMIC_OBSTACLE_CLASS = 1
+_C.SEGMENTATION.WATER_CLASS = 2
+_C.SEGMENTATION.SKY_CLASS = 3
+_C.SEGMENTATION.COLORS = [[0, 255,  0],  # Obstacles RGB color
+                           [255, 0,  0],
+                          [ 0, 0, 255],  # Water RGB color
                           [ 90,  75, 164]]  # Sky RGB color
 
 # Panoptic segmentation: configuration
@@ -31,7 +33,8 @@ _C.PANOPTIC.VOID_ID = 0 # Class ID for void predictions
 _C.PANOPTIC.STATIC_OBSTACLE_CLASS = 1 # Class ID of static obstacles
 _C.PANOPTIC.WATER_CLASS = 3 # Class ID of water
 _C.PANOPTIC.SKY_CLASS = 5 # Class ID of sky
-_C.PANOPTIC.DYN_OBST_IDS = [11,12,13,14,15,16,17,19] # IDs that count as dynamic obstacles
+# _C.PANOPTIC.DYN_OBST_IDS = [11,12,13,14,15,16,17,19] # IDs that count as dynamic obstacles
+_C.PANOPTIC.DYN_OBST_IDS = [1] # IDs that count as dynamic obstacles
 
 # All Paths
 _C.PATHS = CN()

@@ -1,0 +1,35 @@
+
+MODE: 'semantic'
+
+PATHS:
+  # Val dataset root
+  # DATASET_ROOT: 'path/to/LaRS/val'
+  DATASET_ROOT: '/home/jon/Desktop/DELIVER/data/MULTIAQUA_night/annotations'
+  # Path to the predictions root dir (contains prediction dirs for each method)
+  # PREDICTIONS: '/path/to/predictions/semantic'
+  # PREDICTIONS: '/media/jon/disk2/code/DELIVER/development_output/MULTIAQUA_MiT_itl/20250805145916_loss=CE_lr=6e-05_DROP_MODALITIES=True_SHARED_BACKBONE=True_FUSION_MODE=naive_DECODER_HEAD=Mask2Former_MULTIHEAD=False/predictions/test/320x576/itl/'
+  # PREDICTIONS: '/media/jon/disk2/code/DELIVER/development_output/MULTIAQUA_MiT_itl/20250805145916_loss=CE_lr=6e-05_DROP_MODALITIES=True_SHARED_BACKBONE=True_FUSION_MODE=naive_DECODER_HEAD=Mask2Former_MULTIHEAD=False/predictions/val/320x576/itl/'
+
+  # Evaluation results root output dir
+  RESULTS: './results/MULTIAQUA_semantic'
+
+DATASET:
+  IMAGE_SUBDIR: 'images'
+  SEMANTIC_MASK_SUBDIR: ''
+  PANOPTIC_MASK_SUBDIR: 'panoptic_masks'
+  PANOPTIC_ANN_FILE: 'panoptic_annotations.json'
+  SUBSET_LIST: 'image_list.txt'
+  # SUBSET_LIST: 'images_val.txt'
+
+SEGMENTATION:
+  # Colors used in the predictions masks
+  COLORS: 
+    - [0, 255,  0] # Static Obstacles RGB color
+    - [255, 0,  0] # Dynamic RGB color
+    - [ 0, 0, 255] # Water RGB color
+    - [148,0,211] # Sky RGB color
+  IGNORE_ID: 0
+
+PROGRESS:
+  METRICS: ['Q', 'mIoU', 'WE_acc', 'F1']
+  
