@@ -16,10 +16,11 @@ PATHS:
 DATASET:
   IMAGE_SUBDIR: 'images'
   SEMANTIC_MASK_SUBDIR: ''
-  PANOPTIC_MASK_SUBDIR: 'panoptic_masks'
-  PANOPTIC_ANN_FILE: 'panoptic_annotations.json'
-  SUBSET_LIST: 'image_list.txt'
-  # SUBSET_LIST: 'images_val.txt'
+  # PANOPTIC_MASK_SUBDIR: 'panoptic_masks'
+  # PANOPTIC_ANN_FILE: 'panoptic_annotations.json'
+  # TEST_LIST: '../test.txt'
+  # VAL_LIST: '../val.txt'
+  SUBSET_LIST: 'macvi_evaluation_list.txt'
 
 SEGMENTATION:
   # Colors used in the predictions masks
@@ -31,5 +32,5 @@ SEGMENTATION:
   IGNORE_ID: 0
 
 PROGRESS:
-  METRICS: ['Q', 'mIoU', 'WE_acc', 'F1']
+  METRICS: ['mIoU']
   

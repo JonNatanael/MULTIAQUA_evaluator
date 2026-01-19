@@ -1,13 +1,13 @@
 from PIL import Image
 import numpy as np
-import argparse
+import argparse, os
 from multiprocessing import Pool
 from tqdm.auto import tqdm
 import os.path as osp
 import zipfile
-import tempfile
+import tempfile, glob, shutil
 
-from lars_eval import SemanticEvaluator, PanopticEvaluator
+from lars_eval import SemanticEvaluator
 from lars_eval.config import get_cfg
 from lars_eval.utils import TqdmPool
 
@@ -21,6 +21,7 @@ class MethodEvaluator():
 	def evaluate_method(self, method):
 		pred_dir = osp.join(self.cfg.PATHS.PREDICTIONS, method)
 		output_dir = osp.join(self.cfg.PATHS.RESULTS, method)
+		# print(f'{output_dir=}')
 		return self.evaluator.evaluate(pred_dir, output_dir, display_name=method)
 
 
@@ -45,8 +46,6 @@ def main():
 
 	if cfg.MODE == 'semantic':
 		evaluator = SemanticEvaluator(cfg)
-	elif cfg.MODE == 'panoptic':
-		evaluator = PanopticEvaluator(cfg)
 	else:
 		raise ValueError('Unknown mode: %s' % cfg.MODE)
 
@@ -76,19 +75,30 @@ def evaluate_zip(zip_path):
 
 	zf = zipfile.ZipFile(zip_path)
 
+
 	with tempfile.TemporaryDirectory() as tempdir:
 		zf.extractall(tempdir)
 
 		print(tempdir)
 		cfg = get_cfg(args.config)
+		os.makedirs(cfg.PATHS.RESULTS, exist_ok=True)
+
 		evaluator = SemanticEvaluator(cfg)
 		my_evaluator = MethodEvaluator(cfg, evaluator)
+		print(f'{cfg.PATHS.RESULTS=}')
 		args.methods = [tempdir]
+		# args.methods = ['results']
 		results = my_evaluator.evaluate_method(args.methods[0])
 		print(results)
-		
+
+		# print(glob.glob(tempdir+'/*'))
+
+		shutil.copy(f'{tempdir}/frames_val.csv', cfg.PATHS.RESULTS)
+		shutil.copy(f'{tempdir}/frames_test.csv', cfg.PATHS.RESULTS)
+		shutil.copy(f'{tempdir}/summary.json', cfg.PATHS.RESULTS)
 
 if __name__=='__main__':
 	# main()
-	zip_path = 'jon_predictions.zip'
+	# zip_path = 'jon_predictions.zip'
+	zip_path = 'predictions_testing.zip'
 	evaluate_zip(zip_path)
