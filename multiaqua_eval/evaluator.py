@@ -118,9 +118,9 @@ class SemanticEvaluator():
 
 		overall_summary = {
 			'val_mIoU': overall_summary_val['mIoU'],
-			'val_dynamic': overall_summary_val['IoU_dynamic_obstacle'],
+			'val_obstacle': overall_summary_val['IoU_dynamic_obstacle'],
 			'test_mIoU': overall_summary_test['mIoU'],
-			'test_dynamic': overall_summary_test['IoU_dynamic_obstacle'],
+			'test_obstacle': overall_summary_test['IoU_dynamic_obstacle'],
 			'M': (overall_summary_val['mIoU']+overall_summary_test['mIoU'])/2
 		}
 

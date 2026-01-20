@@ -4,15 +4,15 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="lars_evaluator",
-    version="0.1.6",
-    author="Lojze Žust",
-    author_email="lojze.zust@fri.uni-lj.si",
-    description="Evaluation toolkit for the LaRS dataset.",
+    name="multiaqua_evaluator",
+    version="0.1",
+    author="Jon Muhovič",
+    author_email="jon.muhovic@fri.uni-lj.si",
+    description="Evaluation toolkit for the MULTIAQUA dataset.",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/lojzezust/lars_evaluator",
-    packages=['lars_eval'],
+    url="https://github.com/JonNatanael/MULTIAQUA_evaluator",
+    packages=['multiaqua_eval'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: MIT License",
