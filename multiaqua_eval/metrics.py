@@ -5,7 +5,7 @@ import cv2
 import json
 import os
 
-from lars_eval.panopticapi import rgb2id
+from multiaqua_eval.panopticapi import rgb2id
 
 from matplotlib import pyplot as plt
 

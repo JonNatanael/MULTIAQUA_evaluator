@@ -2,7 +2,7 @@ from contextlib import contextmanager
 from tqdm.auto import tqdm
 from multiprocessing import Queue, Pool, RLock
 
-import lars_eval.context as ctx
+import multiaqua_eval.context as ctx
 
 def tqdm_pool_initializer(q,lock,initializer,args):
     # Set process id, tqdm lock

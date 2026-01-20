@@ -4,8 +4,8 @@ import numpy as np
 import pandas as pd
 import json
 
-from lars_eval.panopticapi import OFFSET, VOID, PQStat, rgb2id
-from lars_eval.metrics import Metric, dilate_mask
+from multiaqua_eval.panopticapi import OFFSET, VOID, PQStat, rgb2id
+from multiaqua_eval.metrics import Metric, dilate_mask
 
 
 class PanopticMetric(Metric):

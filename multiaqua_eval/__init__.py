@@ -1,5 +1,5 @@
 
 __all__ = ['config', 'context', 'evaluator', 'metrics', 'panoptic', 'utils']
 
-from lars_eval.evaluator import SemanticEvaluator
-from lars_eval.config import get_cfg
+from multiaqua_eval.evaluator import SemanticEvaluator
+from multiaqua_eval.config import get_cfg

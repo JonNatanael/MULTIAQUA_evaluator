@@ -6,9 +6,9 @@ from tqdm.auto import tqdm
 import pandas as pd
 import json
 
-import lars_eval.context as ctx
-import lars_eval.metrics as M
-import lars_eval.panoptic as PM
+import multiaqua_eval.context as ctx
+import multiaqua_eval.metrics as M
+# import multiaqua_eval.panoptic as PM
 
 
 # def parse_annotations(json_data):
