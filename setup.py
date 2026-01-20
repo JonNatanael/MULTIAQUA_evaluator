@@ -21,7 +21,7 @@ setuptools.setup(
     python_requires='>=3.8',
     install_requires=[
         'Pillow',
-        'numpy',
+        'numpy<2',
         'yacs',
         'tqdm',
         'opencv-python',
