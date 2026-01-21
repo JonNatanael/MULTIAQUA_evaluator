@@ -1,0 +1,26 @@
+MODE: 'semantic'
+
+PATHS:
+  # Val dataset root
+  DATASET_ROOT: '/home/jon/Desktop/DELIVER/data/MULTIAQUA_night/annotations'
+  # DATASET_ROOT: 'daytime_annotations'
+
+  # Evaluation results root output dir
+  RESULTS: './results/MULTIAQUA_semantic'
+
+DATASET:
+  SEMANTIC_MASK_SUBDIR: ''
+  SUBSET_LIST: 'macvi_evaluation_list.txt'
+
+SEGMENTATION:
+  # Colors used in the predictions masks
+  COLORS: 
+    - [0, 255,  0] # Static Obstacles RGB color
+    - [255, 0,  0] # Dynamic RGB color
+    - [ 0, 0, 255] # Water RGB color
+    - [148, 0, 211] # Sky RGB color
+  IGNORE_ID: 0
+
+PROGRESS:
+  METRICS: ['mIoU']
+  

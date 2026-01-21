@@ -1,14 +1,14 @@
-# LaRS Evaluator
+# MULTIAQUA Evaluator
 
 [![arxiv](https://img.shields.io/badge/paper-52b69a?style=for-the-badge&logo=arxiv&logoColor=white)](https://arxiv.org/abs/2512.17450)
 [![dataset](https://img.shields.io/badge/dataset-34a0a4?style=for-the-badge&logo=DocuSign&logoColor=white)](https://lmi.fe.uni-lj.si/en/MULTIAQUA/)
 [![server](https://img.shields.io/badge/evaluation_server-168aad?style=for-the-badge&logo=windowsterminal&logoColor=white)](https://macvi.org)
 [![cite](https://img.shields.io/badge/bibtex-1a759f?style=for-the-badge&logo=overleaf&logoColor=white)](#cite)
 
-<p align="center">
+<!-- <p align="center">
     <img src="lars_ex.jpg" alt="LaRS Examples">
     Examples of scenes in the LaRS benchmark.
-</p>
+</p> -->
 
 This is the evaluator code for the paper "LaRS: A Diverse Panoptic Maritime Obstacle Detection Dataset and Benchmark" presented at ICCV 2023. It can be used to evaluate **semantic segmentation** and **panoptic segmentation** predictions with the LaRS ground-truth annotations. 
 
