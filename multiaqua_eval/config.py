@@ -7,34 +7,22 @@ _C.MODE = "semantic"
 
 # Dataset configuration
 _C.DATASET = CN()
-_C.DATASET.IMAGE_SUBDIR  = "images"
 _C.DATASET.SEMANTIC_MASK_SUBDIR  = "semantic_masks"
-_C.DATASET.PANOPTIC_MASK_SUBDIR  = "panoptic_masks"
-_C.DATASET.PANOPTIC_ANN_FILE  = "panoptic_annotations.json"
 _C.DATASET.SUBSET_LIST = "image_list.txt"
 
 # Semantic segmentation: class configuration
 _C.SEGMENTATION = CN()
-_C.SEGMENTATION.IDS = [0, 1, 2, 3]
+_C.SEGMENTATION.IDS = [1, 2, 3, 4]
 _C.SEGMENTATION.IGNORE_ID = 0
 _C.SEGMENTATION.NAMES = ['static_obstacle', 'dynamic_obstacle', 'water', 'sky']
 _C.SEGMENTATION.STATIC_OBSTACLE_CLASS = 1
 _C.SEGMENTATION.DYNAMIC_OBSTACLE_CLASS = 2
 _C.SEGMENTATION.WATER_CLASS = 3
 _C.SEGMENTATION.SKY_CLASS = 4
-_C.SEGMENTATION.COLORS = [[0, 255,  0],  # Obstacles RGB color
-                           [255, 0,  0],
+_C.SEGMENTATION.COLORS = [[0, 255,  0],  # Static obstacles RGB color
+                           [255, 0,  0], # Dynamic obstacles RGB color
                           [ 0, 0, 255],  # Water RGB color
-                          [ 90,  75, 164]]  # Sky RGB color
-
-# Panoptic segmentation: configuration
-_C.PANOPTIC = CN()
-_C.PANOPTIC.VOID_ID = 0 # Class ID for void predictions
-_C.PANOPTIC.STATIC_OBSTACLE_CLASS = 1 # Class ID of static obstacles
-_C.PANOPTIC.WATER_CLASS = 3 # Class ID of water
-_C.PANOPTIC.SKY_CLASS = 5 # Class ID of sky
-# _C.PANOPTIC.DYN_OBST_IDS = [11,12,13,14,15,16,17,19] # IDs that count as dynamic obstacles
-_C.PANOPTIC.DYN_OBST_IDS = [1] # IDs that count as dynamic obstacles
+                          [148, 0, 211]]  # Sky RGB color
 
 # All Paths
 _C.PATHS = CN()
@@ -44,16 +32,10 @@ _C.PATHS.PREDICTIONS   = "/path/to/predictions/"    # Path to where the segmenta
 
 # Evaluation configuration
 _C.EVALUATION = CN()
-_C.EVALUATION.MIN_COVERAGE = 0.7
-_C.EVALUATION.WE_DILATION_SIZE = 11
-_C.EVALUATION.WE_DILATION_SIZE = 35
-_C.EVALUATION.FP_WATER_EROSION_SIZE = 21
-_C.EVALUATION.SMALL_OBJECT_DILATION = 7
 
 # Progress output configuration
 _C.PROGRESS = CN()
-_C.PROGRESS.METRICS = ['mIoU', 'WE_acc', 'F1']
-
+_C.PROGRESS.METRICS = ['mIoU']
 
 def get_cfg(config_file=None):
     cfg = _C.clone()
