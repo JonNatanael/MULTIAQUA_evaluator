@@ -20,26 +20,32 @@ Currently only the GT of the *training* and *validation* sets is publicly availa
     ```bash
     pip install -r requirements.txt
     ```
-2. The evaluator expects a zip file containing prediction images.
-Configure the path to the dataset in the config file (*e.g.* [multiaqua_semantic.yaml.yaml](configs/multiaqua_semantic.yaml)).
+2. Configure the path to the MULTIAQUA dataset in the config file (*e.g.* [multiaqua_semantic.yaml.yaml](configs/multiaqua_semantic.yaml)).
+
+
 
 ## Usage
 
+The evaluator consists of two main scripts: `evaluate.py` and `evaluate_zip.py`. They perform the same evaluation, but `evaluate.py` can be run on multiple prediction directories simultaneously. The script `evaluate_zip.py` mirrors the behavior on the evaluation server and expects one zip file with predictions for a single method.
+
 1. Place the predictions of your methods into `<prediction_root_dir>/<method_name>`
-    The method dir contains PNG files with predictions for all test images:
-    - **Semantic segmentation**: The PNG file contains the predicted segmentation in RGB format, following the color coding of classes specified in the configuration file (*e.g.* [lars_val_semantic.yaml](configs/v1.0.0/lars_val_semantic.yaml)). By default this is:
-        - sky: `[90,  75, 164]`
-        - water: `[41, 167, 224]`
-        - obstacle: `[247, 195,  37]`
-        - Alternatively you may use the [lars_val_semantic_lbl.yaml](configs/v1.0.0/lars_val_semantic_lbl.yaml) config to evaluate predictions encoded as class ids (0 = obstacles, 1 = water, 2 = sky). Note, however, that the online evaluator expects predictions in the **color-coded format**.
-    - **Panoptic segmentation**: The PNG file contains RGB coded class and instance predictions. The format follows LaRS GT masks: *class id* is stored in the **R** component, while *instance ids* are stored in the **G** and **B** components. 
+    The method directory should contain PNG files with predictions for all val/test images:
+
+    Each PNG file should match the size of the MULTIAQUA annotation files and contain the predicted semantic segmentations. The format of the predictions can be raw (exactly matching the GT annotations) or in RGB format, following the color coding of classes specified in the configuration file (*e.g.* [multiaqua_semantic.yaml](configs/multiaqua_semantic.yaml)). By default this is:
+        - static obstacle `[0, 255, 0]`
+        - dynamic obstacle `[255, 0, 0]`
+        - water `[0, 0, 255]`
+        - sky: `[148, 0, 211]`
+    The color-mapped predictions are easier to interpret by eye, but the prediction scripts work much faster for raw predictions.
+    
 2. Run evaluation:
     ```bash
-    $ python evaluate.py path/to/config.yaml <method_name>
+    $ python evaluate.py <method_name> --config path/to/config.yaml
+    $ python evaluate_zip.py <predictions_zip>.zip --config path/to/config.yaml
     ```
 
 > [!NOTE]
-> Result files with various statistics will be placed in the configured directory (`results/v1.0.0/<track>/<method>` by default).
+> Result files with various statistics will be placed in the configured directory (`results/results/MULTIAQUA_semantic` by default).
 
 ## Evaluation server
 
@@ -54,9 +60,9 @@ The server runs the same code as this evaluator and expects the same prediction 
 
 Results for semantic segmentation methods inlcude the following files:
 
-- `summary.csv`: Overall results (IoU, water-edge accuracy, detection F1)
-- `frames_val.csv`: Per frame metrics for the validation subset (number of TP, FP and FN, IoU, ...)
-- `frames_test.csv`: Per frame metrics for the test subset (number of TP, FP and FN, IoU, ...) *Evaluation server only*
+- `summary.csv`: Overall results (mIoU, dynamic obstacle IoU, M)
+- `frames_val.csv`: Per frame metrics for the validation subset (mIoU, per-class IoU)
+- `frames_test.csv`: Per frame metrics for the test subset (mIoU, per-class IoU) **Evaluation server only**
 
 ## <a name="cite"></a>Citation
 
