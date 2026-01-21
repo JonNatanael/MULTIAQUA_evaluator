@@ -18,8 +18,8 @@ class SemanticEvaluator():
 		with open(osp.join(cfg.PATHS.DATASET_ROOT, cfg.DATASET.SUBSET_LIST), 'r') as file:
 			self.image_list = [l.strip() for l in file]
 
-		skip = 20
-		self.image_list = self.image_list[::skip]
+		# skip = 20
+		# self.image_list = self.image_list[::skip]
 
 		self.iou_val = M.IoU(cfg)
 		self.iou_test = M.IoU(cfg)
