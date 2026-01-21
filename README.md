@@ -10,9 +10,9 @@
     Examples of scenes in the LaRS benchmark.
 </p> -->
 
-This is the evaluator code for the paper "LaRS: A Diverse Panoptic Maritime Obstacle Detection Dataset and Benchmark" presented at ICCV 2023. It can be used to evaluate **semantic segmentation** and **panoptic segmentation** predictions with the LaRS ground-truth annotations. 
+This is the evaluator code for the paper "MULTIAQUA: A multimodal maritime dataset and robust training strategies for multimodal semantic segmentation". It can be used to evaluate multimodal semantic segmentation predictions with the MULTIAQUA ground-truth annotations. 
 
-Currently only the GT of the *training* and *validation* sets is publicly available. For evaluation on the LaRS test set, please submit your submissions through [our evaluation server](https://macvi.org).
+Currently only the GT of the *training* and *validation* sets is publicly available. For evaluation on the MULTIAQUA test set, please submit your submissions through [our evaluation server](https://macvi.org).
 
 ## Setup
 
@@ -20,8 +20,8 @@ Currently only the GT of the *training* and *validation* sets is publicly availa
     ```bash
     pip install -r requirements.txt
     ```
-2. For each of the evaluation tracks (semantic segmentation, panoptic segmentation) the evaluator expects a prediction root dir, where predictions will be placed.  
-Configure paths to the dataset and predictions root in config files for your version of LaRS (*e.g.* [lars_val_semantic.yaml](configs/v1.0.0/lars_val_semantic.yaml)).
+2. The evaluator expects a zip file containing prediction images.
+Configure the path to the dataset in the config file (*e.g.* [multiaqua_semantic.yaml.yaml](configs/multiaqua_semantic.yaml)).
 
 ## Usage
 
@@ -43,17 +43,10 @@ Configure paths to the dataset and predictions root in config files for your ver
 
 ## Evaluation server
 
-You can evaluate your methods on the LaRS **test** set through our online [evaluation server](https://macvi.org/). You need to create an account to submit your results.
+You can evaluate your methods on the MULTIAQUA **test** set through our online [evaluation server](https://macvi.org/). You need to create an account to submit your results.
 
-The same prediction formats for semantic and panoptic segmentation tasks are expected by the server. The predictions of a single method need to be stored into a .zip archive and submitted to the server. [More information >](https://macvi.org/dataset#LaRS)
+The server runs the same code as this evaluator and expects the same prediction format. The predictions of a single method need to be stored into a .zip archive and submitted to the server. [More information >](https://macvi.org/dataset#MULTIAQUA)
 
-## Starter packs
-
-We also provide the following starter packs for training and inferring on the LaRS dataset.
-
-**Semantic segmentation**
-
-[![lojzezust/mmsegmentation-macvi - GitHub](https://gh-card.dev/repos/lojzezust/mmsegmentation-macvi.svg)](https://github.com/lojzezust/mmsegmentation-macvi)
 
 ## Result files
 
@@ -62,30 +55,18 @@ We also provide the following starter packs for training and inferring on the La
 Results for semantic segmentation methods inlcude the following files:
 
 - `summary.csv`: Overall results (IoU, water-edge accuracy, detection F1)
-- `frames.csv`: Per frame metrics (number of TP, FP and FN, IoU, ...)
-- `segments.csv`: Segment-wise results (TP coverage, FP area, FN area, ...)
-
-### Panoptic segmentation
-
-Results for semantic segmentation methods inlcude the following files:
-
-- `summary.csv`: Overall results (PQ, RQ, SQ, semantic metrics)
-- `frames.csv`: Per frame metrics
-- `segments.csv`: Segment-wise results (TPs, FPs, FNs, areas, bboxes)
-- `segments_agnostic.csv`: Segment-wise results for obstacle-class-agnostic case
-- `segments_sem.csv`: Segment-wise results from semantic segmentation evaluation
-- `obst_csl.csv`: Matched segments (GT and pred) categories and IoU -> for confusion matrix
-- `obst_cls_agnostic.csv`: Matched segments categories and IoU for obstacle-class-agnostic case
+- `frames_val.csv`: Per frame metrics for the validation subset (number of TP, FP and FN, IoU, ...)
+- `frames_test.csv`: Per frame metrics for the test subset (number of TP, FP and FN, IoU, ...) *Evaluation server only*
 
 ## <a name="cite"></a>Citation
 
 If you use LaRS, please cite our paper.
 
 ```bibtex
-@InProceedings{Zust2023LaRS,
-  title={LaRS: A Diverse Panoptic Maritime Obstacle Detection Dataset and Benchmark},
-  author={{\v{Z}}ust, Lojze and Per{\v{s}}, Janez and Kristan, Matej},
-  booktitle={International Conference on Computer Vision (ICCV)},
-  year={2023}
+@article{muhovivc2025multiaqua,
+  title={MULTIAQUA: A multimodal maritime dataset and robust training strategies for multimodal semantic segmentation},
+  author={Muhovi{\v{c}}, Jon and Per{\v{s}}, Janez},
+  journal={arXiv preprint arXiv:2512.17450},
+  year={2025}
 }
 ```
