@@ -36,6 +36,7 @@ The evaluator consists of two main scripts: `evaluate.py` and `evaluate_zip.py`.
         - dynamic obstacle `[255, 0, 0]`
         - water `[0, 0, 255]`
         - sky: `[148, 0, 211]`
+
     The color-mapped predictions are easier to interpret by eye, but the prediction scripts work much faster for raw predictions.
     
 2. Run evaluation:
@@ -45,7 +46,7 @@ The evaluator consists of two main scripts: `evaluate.py` and `evaluate_zip.py`.
     ```
 
 > [!NOTE]
-> Result files with various statistics will be placed in the configured directory (`results/results/MULTIAQUA_semantic` by default).
+> Result files with various statistics will be placed in the configured directory (`results/MULTIAQUA_semantic` by default).
 
 ## Evaluation server
 
@@ -66,7 +67,7 @@ Results for semantic segmentation methods inlcude the following files:
 
 ## <a name="cite"></a>Citation
 
-If you use LaRS, please cite our paper.
+If you use MULTIAQUA, please cite our paper.
 
 ```bibtex
 @article{muhovivc2025multiaqua,
