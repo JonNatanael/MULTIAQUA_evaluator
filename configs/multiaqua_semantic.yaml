@@ -2,8 +2,7 @@ MODE: 'semantic'
 
 PATHS:
   # Val dataset root
-  DATASET_ROOT: '/home/jon/Desktop/DELIVER/data/MULTIAQUA_night/annotations'
-  # DATASET_ROOT: 'daytime_annotations'
+  DATASET_ROOT: 'path/to/MULTIAQUA/annotations'
 
   # Evaluation results root output dir
   RESULTS: './results/MULTIAQUA_semantic'
